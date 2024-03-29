@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="roundedImageViewRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8%</item>
+    </style>
+
+    <style name="roundedPopupMenu" parent="Widget.Material3.PopupMenu">
+        <item name="android:popupBackground">@drawable/custom_popup_background</item>
+    </style>
+
+    <style name="cropActivity" parent="Theme.Material3.Dark">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">#211f26</item>
+        <item name="colorPrimary">#211f26</item>
+        <item name="android:colorControlNormal">@android:color/white</item>
+        <item name="android:backgroundTint">@android:color/darker_gray</item>
+    </style>
+</resources>
