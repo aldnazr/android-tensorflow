@@ -26,7 +26,7 @@ abstract class ScanHistoryDatabase : RoomDatabase() {
             return Room.databaseBuilder(
                 context.applicationContext,
                 ScanHistoryDatabase::class.java,
-                "favorite_database"
+                "scan_history_database"
             ).build()
         }
     }

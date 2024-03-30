@@ -132,8 +132,6 @@ class ScanActivity : AppCompatActivity() {
         if (result.isSuccessful) {
             imageUri = result.uriContent
             analyzeImage(imageUri!!)
-        } else {
-            imageUri = null
         }
     }
 
