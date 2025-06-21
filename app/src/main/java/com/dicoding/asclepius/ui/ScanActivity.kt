@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -23,7 +22,6 @@ import com.dicoding.asclepius.util.Time
 import org.tensorflow.lite.support.image.TensorImage
 import java.text.NumberFormat
 
-
 class ScanActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityScanBinding.inflate(layoutInflater) }
@@ -34,8 +32,8 @@ class ScanActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(binding.root)
+        enableEdgeToEdge()
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -44,11 +42,23 @@ class ScanActivity : AppCompatActivity() {
         cancerClassifier = CancerClassification.newInstance(this)
 
         with(binding) {
-            galleryButton.setOnClickListener {
-//                pickImage()
-                startCrop()
+            botNav.applyBottomInsetPadding = false
+            botNav.setOnItemSelectedListener { menu ->
+                when (menu.itemId) {
+                    R.id.gallery -> startCrop()
+                    R.id.delete -> {
+                        imageUri?.let {
+                            binding.previewImageView.setImageResource(R.drawable.ic_place_holder)
+                            imageUri = null
+                        } ?: run {
+                            showToast("Gambar untuk dihapus tidak ada")
+                        }
+                    }
+                }
+                true
             }
-            analyzeButton.setOnClickListener {
+
+            fab.setOnClickListener {
                 imageUri?.let {
                     saveToLocalDB()
                     moveToResult()
@@ -56,8 +66,19 @@ class ScanActivity : AppCompatActivity() {
                     showToast(getString(R.string.empty_image_warning))
                 }
             }
-            popupMenu.setOnClickListener { showPopupMenu() }
+
             toolBar.setNavigationOnClickListener { finish() }
+
+            toolBar.setOnMenuItemClickListener { menuId ->
+                when (menuId.itemId) {
+                    R.id.riwayat -> startActivity(
+                        Intent(
+                            this@ScanActivity, RiwayatActivity::class.java
+                        )
+                    )
+                }
+                true
+            }
         }
     }
 
@@ -97,28 +118,6 @@ class ScanActivity : AppCompatActivity() {
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun showPopupMenu() {
-        PopupMenu(this, binding.popupMenu).apply {
-            menuInflater.inflate(R.menu.popupmenu_scan, menu)
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    R.id.clearImage -> {
-                        binding.previewImageView.setImageResource(R.drawable.ic_place_holder)
-                        imageUri = null
-                    }
-
-                    R.id.riwayat -> startActivity(
-                        Intent(
-                            this@ScanActivity, RiwayatActivity::class.java
-                        )
-                    )
-                }
-                true
-            }
-            show()
-        }
     }
 
     override fun onDestroy() {

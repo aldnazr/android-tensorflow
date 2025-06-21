@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -11,7 +12,6 @@ import com.dicoding.asclepius.R
 import com.dicoding.asclepius.data.ArticlesItem
 import com.dicoding.asclepius.databinding.ItemNewsBinding
 import com.dicoding.asclepius.ui.NewsDetail
-import com.google.android.material.button.MaterialButton
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.TimeZone
@@ -22,10 +22,8 @@ class NewsAdapter(private val list: ArrayList<ArticlesItem>) :
     class ViewHolder(private val binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(news: ArticlesItem) {
-            Glide.with(itemView.context)
-                .load(news.urlToImage!!)
-                .into(binding.shapeableImageView)
-            binding.materialTextView.text = news.title
+            Glide.with(itemView.context).load(news.urlToImage!!).into(binding.shapeableImageView)
+            binding.titleTextView.text = news.title
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, NewsDetail::class.java).apply {
                     putExtra("title", news.title)
@@ -51,7 +49,7 @@ class NewsAdapter(private val list: ArrayList<ArticlesItem>) :
             return outputFormat.format(dateParse ?: "No date")
         }
 
-        private fun showMenu(button: MaterialButton, url: String) {
+        private fun showMenu(button: ImageButton, url: String) {
             PopupMenu(itemView.context, button).apply {
                 menuInflater.inflate(R.menu.popupmenu, menu)
                 setOnMenuItemClickListener {
@@ -63,8 +61,7 @@ class NewsAdapter(private val list: ArrayList<ArticlesItem>) :
                             }
                             itemView.context.startActivity(
                                 Intent.createChooser(
-                                    intent,
-                                    "Bagikan"
+                                    intent, "Bagikan"
                                 )
                             )
                         }
@@ -84,9 +81,7 @@ class NewsAdapter(private val list: ArrayList<ArticlesItem>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ItemNewsBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+                LayoutInflater.from(parent.context), parent, false
             )
         )
     }

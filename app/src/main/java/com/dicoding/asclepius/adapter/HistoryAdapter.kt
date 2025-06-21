@@ -50,7 +50,7 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
                 deleteButton.setOnClickListener {
                     deleteFavorite(scanHistory.id)
                 }
-                materialCard.setOnClickListener {
+                binding.root.setOnClickListener {
                     val intent = Intent(itemView.context, ResultActivity::class.java).apply {
                         putExtra(ResultActivity.EXTRA_IMAGE_URI, scanHistory.image)
                         putExtra(ResultActivity.EXTRA_RESULT, scanHistory.result)

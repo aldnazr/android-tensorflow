@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.dicoding.asclepius.databinding.ActivityNewsDetailBinding
+import androidx.core.net.toUri
 
 class NewsDetail : AppCompatActivity() {
 
@@ -31,12 +32,12 @@ class NewsDetail : AppCompatActivity() {
                 .into(imageView)
             titleTextView.text = intent.getStringExtra("title")
             descTextView.text = intent.getStringExtra("description")
-            buttonBack.setOnClickListener { finish() }
+            toolbar.setNavigationOnClickListener { finish() }
             buttonReadArticle.setOnClickListener {
                 startActivity(
                     Intent(
                         Intent.ACTION_VIEW,
-                        Uri.parse(intent.getStringExtra("url"))
+                        intent.getStringExtra("url")?.toUri()
                     )
                 )
             }

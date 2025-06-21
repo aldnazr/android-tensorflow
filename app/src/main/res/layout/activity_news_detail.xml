@@ -1,90 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorSurfaceContainerLowest"
-    tools:context=".ui.NewsDetail">
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="24dp">
 
-        <ImageView
+        <!-- Image Cover -->
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="320dp"
-            android:background="@drawable/detail_news_shape"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
             android:contentDescription="image"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Material3.Corner.Top" />
 
+        <!-- Overlay Toolbar on Image -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent"
+            android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_back" />
+
+        <!-- Content Container -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardContent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="260dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonBack"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                app:icon="@drawable/ic_arrow_back"
-                app:iconTint="@color/black" />
-        </com.google.android.material.appbar.MaterialToolbar>
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/titleTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="14dp"
-            android:fontFamily="sans-serif-medium"
-            android:lineSpacingExtra="4dp"
-            android:text="@string/app_name"
-            android:textColor="?attr/colorControlNormal"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/titleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                    android:textColor="?attr/colorOnSurface" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/descTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="14dp"
-            android:justificationMode="inter_word"
-            android:lineSpacingExtra="4dp"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/descTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:justificationMode="inter_word"
+                    android:lineSpacingExtra="6dp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="16sp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonReadArticle"
-            style="@style/Widget.Material3.Button.TonalButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="14dp"
-            android:text="Baca selengkapnya"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descTextView" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonReadArticle"
+                    style="@style/Widget.Material3.Button.IconButton.Filled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Baca selengkapnya"
+                    app:cornerRadius="24dp"
+                    app:icon="@drawable/ic_read_more"
+                    app:iconPadding="8dp"
+                    app:iconTint="?attr/colorOnPrimary" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="14dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonReadArticle" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </ScrollView>

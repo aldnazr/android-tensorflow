@@ -46,9 +46,9 @@ android {
 dependencies {
 
     implementation("androidx.core:core-ktx:1.13.0-beta01")
-    implementation("androidx.appcompat:appcompat:1.7.0-alpha03")
-    implementation("com.google.android.material:material:1.12.0-beta01")
-    implementation("androidx.constraintlayout:constraintlayout:2.2.0-alpha13")
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
     implementation("androidx.activity:activity-ktx:1.9.0-beta01")
     implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
     implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
