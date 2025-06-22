@@ -8,4 +8,5 @@
     <string name="empty_image_warning">Silakan pilih gambar untuk di scan.</string>
     <string name="image_classifier_failed">Image classifier failed to initialize. See error logs for details</string>
     <string name="empty_scan_history">Tidak ada riwayat scan</string>
+    <string name="persentase">Persentase</string>
 </resources>

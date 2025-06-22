@@ -7,6 +7,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.asclepius.adapter.HistoryAdapter
 import com.dicoding.asclepius.databinding.ActivityRiwayatBinding
 import com.dicoding.asclepius.model.HistoryModel
@@ -15,7 +17,7 @@ class RiwayatActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityRiwayatBinding.inflate(layoutInflater) }
     private val viewModel by viewModels<HistoryModel>()
-    private val historyAdapter = HistoryAdapter()
+    private val historyAdapter = HistoryAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,26 @@ class RiwayatActivity : AppCompatActivity() {
             recyclerView.adapter = historyAdapter
             toolBar.setNavigationOnClickListener { finish() }
         }
+
+        val itemTouchHelper = ItemTouchHelper(object :
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false // kita tidak mendukung drag & drop
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val item = historyAdapter.listScanHistory[position]
+                historyAdapter.deleteItem(position)
+                // Hapus dari database
+                historyAdapter.deleteFromDatabase(item.id)
+            }
+        })
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
 
     }
 }

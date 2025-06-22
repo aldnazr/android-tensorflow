@@ -47,13 +47,14 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fab"
-        style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon.Secondary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="18dp"
+        android:backgroundTint="?attr/colorSecondaryContainer"
         android:text="Scan"
         app:icon="@drawable/ic_document_scanner"
+        app:iconTint="?attr/colorOnPrimaryContainer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

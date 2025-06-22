@@ -1,10 +1,13 @@
 package com.dicoding.asclepius.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.dicoding.asclepius.database.entity.ScanHistory
 import com.dicoding.asclepius.database.local.ScanHistoryDatabase
@@ -13,11 +16,16 @@ import com.dicoding.asclepius.ui.ResultActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
-class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+class HistoryAdapter(private val context: Context) :
+    RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    private val listScanHistory = ArrayList<ScanHistory>()
+    val listScanHistory = ArrayList<ScanHistory>()
+    val dateFormatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+    val timeFormatter = SimpleDateFormat("HH:mm", Locale.getDefault())
 
     @SuppressLint("NotifyDataSetChanged")
     fun setList(list: List<ScanHistory>) {
@@ -26,30 +34,39 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun deleteItem(position: Int) {
+        listScanHistory.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun deleteFromDatabase(id: Int) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val dao = ScanHistoryDatabase.getInstance(context).scanHistoryDao()
+            dao.deleteData(id)
+        }
+    }
+
     inner class ViewHolder(private val binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private val scanHistoryDatabase by lazy {
-            ScanHistoryDatabase.getInstance(itemView.context).scanHistoryDao()
-        }
-
-        @SuppressLint("NotifyDataSetChanged")
-        fun deleteFavorite(id: Int) {
-            CoroutineScope(Dispatchers.IO).launch {
-                scanHistoryDatabase.deleteData(id)
-                withContext(Dispatchers.Main) {
-                    notifyDataSetChanged()
-                }
-            }
-        }
-
         fun bind(scanHistory: ScanHistory) {
+            val date = Date(scanHistory.time)
             with(binding) {
-                shapeableImageView.setImageURI(Uri.parse(scanHistory.image))
-                timeTextView.text = scanHistory.time
-                deleteButton.setOnClickListener {
-                    deleteFavorite(scanHistory.id)
-                }
+                shapeableImageView.setImageURI(scanHistory.image.toUri())
+                dateTextView.text = dateFormatter.format(date)
+                timeTextView.text = timeFormatter.format(date)
+                cancerTextView.text = scanHistory.result.drop(11).dropLast(3).trim()
+                percentText.text = scanHistory.result.takeLast(3)
+
+                val background = percentText.background
+                val wrappedDrawable = DrawableCompat.wrap(background)
+
+                val color =
+                    if (scanHistory.result.contains("Non Cancer")) Color.parseColor("#A4F4CF")
+                    else Color.parseColor("#FEE685")
+
+                DrawableCompat.setTint(wrappedDrawable, color)
+
                 binding.root.setOnClickListener {
                     val intent = Intent(itemView.context, ResultActivity::class.java).apply {
                         putExtra(ResultActivity.EXTRA_IMAGE_URI, scanHistory.image)

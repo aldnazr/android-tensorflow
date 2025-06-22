@@ -30,8 +30,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         with(binding) {
-            val divider = DividerItemDecoration(this@MainActivity, RecyclerView.VERTICAL)
-            recyclerView.addItemDecoration(divider)
             recyclerView.setOnScrollChangeListener { _, _, i2, _, i4 ->
                 if (i2 > i4) binding.fab.shrink() else binding.fab.extend()
             }

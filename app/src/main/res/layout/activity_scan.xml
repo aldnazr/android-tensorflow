@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         app:cardBackgroundColor="?attr/colorSurfaceContainerLowest"
         app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +68,9 @@
         app:itemActiveIndicatorStyle="@style/Widget.Material3.BottomNavigationView"
         app:itemPaddingBottom="16dp"
         app:itemPaddingTop="16dp"
+        app:itemIconTint="@color/disabled_selector"
+        app:itemTextColor="@color/disabled_selector"
+        app:activeIndicatorLabelPadding="0dp"
         app:itemTextAppearanceActiveBoldEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottomnav_menu" />
@@ -77,10 +81,11 @@
         android:layout_height="wrap_content"
         android:elevation="0dp"
         android:src="@drawable/ic_document_scanner"
-        app:backgroundTint="?attr/colorOnPrimary"
+        app:backgroundTint="?attr/colorPrimarySurface"
         app:layout_anchor="@id/botNav"
         app:layout_constraintBottom_toBottomOf="@id/botNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/botNav" />
+        app:layout_constraintTop_toTopOf="@id/botNav"
+        app:tint="?attr/colorOnPrimary" />
 </androidx.constraintlayout.widget.ConstraintLayout>

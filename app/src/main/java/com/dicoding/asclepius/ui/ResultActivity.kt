@@ -3,16 +3,10 @@ package com.dicoding.asclepius.ui
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.dicoding.asclepius.database.entity.ScanHistory
 import com.dicoding.asclepius.databinding.ActivityResultBinding
-import com.dicoding.asclepius.model.HistoryModel
-import com.dicoding.asclepius.util.Time
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class ResultActivity : AppCompatActivity() {
 
@@ -33,7 +27,8 @@ class ResultActivity : AppCompatActivity() {
 
         with(binding) {
             resultImage.setImageURI(Uri.parse(intentImageUri))
-            resultText.text = intentTextResult
+            analisisInput.setText(intentTextResult?.drop(11)?.dropLast(3)?.trim())
+            percentageInput.setText(intentTextResult?.takeLast(3))
             toolBar.setNavigationOnClickListener { finish() }
         }
     }

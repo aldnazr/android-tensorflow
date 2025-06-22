@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorSurfaceContainerLowest"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".ui.NewsDetail">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,7 +29,7 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,15 +38,17 @@
         <!-- Content Container -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardContent"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="260dp"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer"
             app:cardCornerRadius="16dp"
             app:cardElevation="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -76,6 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:backgroundTint="?attr/colorPrimaryVariant"
                     android:text="Baca selengkapnya"
                     app:cornerRadius="24dp"
                     app:icon="@drawable/ic_read_more"
