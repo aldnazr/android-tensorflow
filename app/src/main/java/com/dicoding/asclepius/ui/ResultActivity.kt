@@ -27,8 +27,8 @@ class ResultActivity : AppCompatActivity() {
 
         with(binding) {
             resultImage.setImageURI(Uri.parse(intentImageUri))
-            analisisInput.setText(intentTextResult?.drop(11)?.dropLast(3)?.trim())
-            percentageInput.setText(intentTextResult?.takeLast(3))
+            analisisInput.text = intentTextResult?.drop(11)?.dropLast(3)?.trim()
+            percentageInput.text = intentTextResult?.takeLast(3)
             toolBar.setNavigationOnClickListener { finish() }
         }
     }

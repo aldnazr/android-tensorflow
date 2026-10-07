@@ -2,5 +2,30 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="red">	#FF0000</color>
+    <color name="red">#FF0000</color>
+
+    <!-- Medical & Healthcare Palette (Teal & Emerald) -->
+    <color name="brand_primary">#0D9488</color>
+    <color name="brand_primary_dark">#0F766E</color>
+    <color name="brand_primary_container">#CCFBF1</color>
+    <color name="brand_on_primary_container">#115E59</color>
+    <color name="brand_secondary">#0284C7</color>
+    <color name="brand_secondary_container">#E0F2FE</color>
+
+    <!-- Neutral & Surface Layers -->
+    <color name="surface_canvas">#F8FAFC</color>
+    <color name="surface_card">#FFFFFF</color>
+    <color name="surface_card_stroke">#E2E8F0</color>
+    <color name="surface_subtle">#F1F5F9</color>
+
+    <!-- Text Tiers -->
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#475569</color>
+    <color name="text_tertiary">#94A3B8</color>
+
+    <!-- Status Accents -->
+    <color name="badge_safe_bg">#DCFCE7</color>
+    <color name="badge_safe_text">#15803D</color>
+    <color name="badge_warning_bg">#FEF3C7</color>
+    <color name="badge_warning_text">#B45309</color>
 </resources>

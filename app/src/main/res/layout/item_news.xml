@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
-    android:layout_marginVertical="8dp"
-    app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
-    app:strokeWidth="0dp">
+    android:layout_marginVertical="10dp"
+    app:cardBackgroundColor="@color/surface_card"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/surface_card_stroke"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,9 +20,9 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/shapeableImageView"
             android:layout_width="0dp"
-            android:layout_height="180dp"
+            android:layout_height="190dp"
             android:scaleType="centerCrop"
-            android:src="@color/black"
+            android:src="@color/surface_subtle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,14 +33,14 @@
             android:id="@+id/titleTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:lineSpacingExtra="4dp"
             android:maxLines="2"
             android:text="@string/app_name"
-            android:textColor="?attr/colorOnSurface"
-            android:textSize="18sp"
+            android:textColor="@color/text_primary"
+            android:textSize="17sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shapeableImageView" />
@@ -49,23 +50,24 @@
             android:id="@+id/timeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             android:text="2 jam yang lalu"
-            android:textColor="?attr/colorOutline"
-            android:textSize="14sp"
+            android:textColor="@color/text_tertiary"
+            android:textSize="13sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleTextView" />
 
         <!-- Tombol More -->
         <ImageButton
             android:id="@+id/moreButton"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="2dp"
             android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/app_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/titleTextView"
             app:srcCompat="@drawable/ic_more_vert"
-            app:tint="?attr/colorOnSurface" />
+            app:tint="@color/text_secondary" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

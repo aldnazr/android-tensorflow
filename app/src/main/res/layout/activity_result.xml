@@ -4,112 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurfaceContainerLow"
+    android:background="@color/surface_canvas"
     tools:context=".ui.ResultActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:title="Result" />
+            app:navigationIconTint="@color/text_primary"
+            app:title="Result"
+            app:titleTextColor="@color/text_primary" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="12dp"
-            android:justificationMode="inter_word"
-            android:text="@string/result"
-            android:textAllCaps="true"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="filled"
-            app:boxStrokeWidth="0dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/analisis_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:enabled="false"
-                android:focusable="false"
-                android:text="Kanker"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="12dp"
-            android:fontFamily="sans-serif-medium"
-            android:justificationMode="inter_word"
-            android:text="@string/persentase"
-            android:textAllCaps="true"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/white"
-            app:boxBackgroundMode="filled"
-            app:boxStrokeWidth="0dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/percentage_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:enabled="false"
-                android:focusable="false"
-                android:text="Persentase"
-                android:textColor="@color/black" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="sans-serif-medium"
-            android:justificationMode="inter_word"
-            android:text="Images"
-            android:textAllCaps="true"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
+        <!-- Double Bezel Hardware Enclosure Image Container -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            app:cardBackgroundColor="?attr/colorSurfaceContainerLowest"
-            app:cardCornerRadius="0dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true">
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="20dp"
+            app:cardBackgroundColor="@color/surface_card"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/surface_card_stroke"
+            app:strokeWidth="1dp">
 
             <ImageView
                 android:id="@+id/result_image"
                 android:layout_width="match_parent"
-                android:layout_height="340dp"
-                android:layout_margin="8dp"
+                android:layout_height="320dp"
+                android:layout_margin="12dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/ic_place_holder"
                 tools:ignore="ContentDescription" />
         </com.google.android.material.card.MaterialCardView>
+
+        <!-- Result Metrics Card Shell -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            app:cardBackgroundColor="@color/surface_card"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="2dp"
+            app:strokeColor="@color/surface_card_stroke"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Eyebrow Badge -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_pill_eyebrow"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/result"
+                    android:textColor="@color/brand_on_primary_container"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <!-- Analisis Output Display -->
+                <TextView
+                    android:id="@+id/analisis_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Kanker"
+                    android:textColor="@color/text_primary"
+                    android:textSize="22sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="16dp"
+                    android:background="@color/surface_card_stroke" />
+
+                <!-- Eyebrow Badge -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_pill_eyebrow"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/persentase"
+                    android:textColor="@color/brand_on_primary_container"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <!-- Percentage Output Display -->
+                <TextView
+                    android:id="@+id/percentage_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Persentase"
+                    android:textColor="@color/brand_primary"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 </ScrollView>

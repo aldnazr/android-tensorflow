@@ -4,115 +4,91 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingHorizontal="8dp"
-    android:paddingVertical="4dp">
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="6dp">
 
+    <!-- Double Bezel Card Shell -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="?attr/colorSurfaceContainerLowest"
-        app:cardCornerRadius="14dp"
+        app:cardBackgroundColor="@color/surface_card"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="2dp"
         app:cardUseCompatPadding="false"
+        app:strokeColor="@color/surface_card_stroke"
         app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:padding="12dp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/shapeableImageView"
-                android:layout_width="105dp"
-                android:layout_height="105dp"
-                android:layout_margin="8dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:scaleType="centerCrop"
-                android:src="@color/black"
+                android:src="@color/surface_subtle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/roundedImageViewRounded" />
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/cancerTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="14dp"
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:text="Mole Detection"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:textColor="@color/text_primary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/shapeableImageView"
                 app:layout_constraintTop_toTopOf="@id/shapeableImageView" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/percentText"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="3dp"
-                android:background="@drawable/chip_history_shape"
-                android:backgroundTint="@android:color/holo_green_light"
-                android:paddingTop="1.3dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_pill_eyebrow"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="2dp"
                 android:text="55%"
+                android:textColor="@color/brand_on_primary_container"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/shapeableImageView"
                 app:layout_constraintTop_toBottomOf="@id/cancerTextView" />
 
             <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:maxLines="1"
-                android:text="Date"
-                android:textColor="#A4A4A4"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@id/dateTextView"
-                app:layout_constraintStart_toEndOf="@id/shapeableImageView" />
-
-            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/dateTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginStart="14dp"
                 android:ellipsize="end"
-                android:fontFamily="sans-serif-black"
                 android:maxLines="1"
                 android:text="Sep 23 2023"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/text_tertiary"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/shapeableImageView"
                 app:layout_constraintStart_toEndOf="@id/shapeableImageView" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="1"
-                android:text="Time"
-                android:textColor="#A4A4A4"
-                android:textSize="13sp"
-                app:layout_constraintBottom_toTopOf="@id/timeTextView"
-                app:layout_constraintStart_toStartOf="@id/timeTextView" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/timeTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
+                android:layout_marginStart="12dp"
                 android:ellipsize="end"
-                android:fontFamily="sans-serif-black"
                 android:maxLines="1"
                 android:text="11:23"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:textColor="@color/text_tertiary"
+                android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@id/shapeableImageView"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/dateTextView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

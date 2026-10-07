@@ -4,14 +4,24 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurfaceContainerLowest"
+    android:background="@color/surface_canvas"
     tools:context=".ui.SplashActivity">
 
-    <ImageView
+    <!-- Double Bezel Hardware Enclosure Logo -->
+    <RelativeLayout
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/rounded_shape"
-        android:padding="28dp"
-        android:src="@drawable/ic_medkit" />
+        android:background="@drawable/bg_double_bezel_outer"
+        android:elevation="4dp"
+        android:padding="6dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_shape"
+            android:contentDescription="@string/app_name"
+            android:padding="26dp"
+            android:src="@drawable/ic_medkit" />
+    </RelativeLayout>
 </RelativeLayout>

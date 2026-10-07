@@ -3,12 +3,13 @@ package com.dicoding.asclepius.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.dicoding.asclepius.R
 import com.dicoding.asclepius.database.entity.ScanHistory
 import com.dicoding.asclepius.database.local.ScanHistoryDatabase
 import com.dicoding.asclepius.databinding.ItemHistoryBinding
@@ -58,14 +59,15 @@ class HistoryAdapter(private val context: Context) :
                 cancerTextView.text = scanHistory.result.drop(11).dropLast(3).trim()
                 percentText.text = scanHistory.result.takeLast(3)
 
-                val background = percentText.background
-                val wrappedDrawable = DrawableCompat.wrap(background)
-
-                val color =
-                    if (scanHistory.result.contains("Non Cancer")) Color.parseColor("#A4F4CF")
-                    else Color.parseColor("#FEE685")
-
-                DrawableCompat.setTint(wrappedDrawable, color)
+                val isSafe = scanHistory.result.contains("Non Cancer")
+            percentText.setBackgroundResource(R.drawable.bg_pill_eyebrow)
+            if (isSafe) {
+                percentText.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#DCFCE7"))
+                percentText.setTextColor(Color.parseColor("#15803D"))
+            } else {
+                percentText.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FEF3C7"))
+                percentText.setTextColor(Color.parseColor("#B45309"))
+            }
 
                 binding.root.setOnClickListener {
                     val intent = Intent(itemView.context, ResultActivity::class.java).apply {
