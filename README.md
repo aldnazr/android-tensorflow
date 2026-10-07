@@ -123,18 +123,19 @@ android-tensorflow/
 
 ## 🔑 Konfigurasi API Key
 
-Fitur berita mengambil data dari [NewsAPI.org](https://newsapi.org/). API key saat ini disimpan sebagai `buildConfigField` di `app/build.gradle.kts`:
+Fitur berita mengambil data dari [NewsAPI.org](https://newsapi.org/). API key **tidak di-commit ke repo** dan dibaca saat build dengan urutan fallback:
 
-```kotlin
-buildConfigField("String", "NEWS_API_KEY", "\"YOUR_NEWS_API_KEY_HERE\"")
-```
+1. `NEWS_API_KEY` di `local.properties` (root proyek) — untuk pengembangan lokal
+2. Environment variable `NEWS_API_KEY` — untuk CI (GitHub Actions meng-inject dari GitHub Secrets)
 
 Langkah:
 1. Buat akun dan dapatkan API key (free tier) di [newsapi.org](https://newsapi.org/).
-2. Ganti nilai `NEWS_API_KEY` dengan key milikmu.
-3. Sync ulang Gradle.
-
-> ⚠️ Untuk release ke production, hindari men-*hardcode* API key di source code. Pindahkan ke `local.properties` / `BuildConfig` yang tidak di-commit, atau gunakan secure storage.
+2. Tambahkan baris berikut ke `local.properties` (file ini sudah masuk `.gitignore`, tidak akan terkirim ke repo):
+   ```properties
+   NEWS_API_KEY=api_key_kamu
+   ```
+3. Untuk CI: tambahkan secret `NEWS_API_KEY` di GitHub (`Settings > Secrets and variables > Actions`), workflow otomatis menggunakannya saat build.
+4. Sync ulang Gradle.
 
 ## 📜 Izin (Permissions)
 

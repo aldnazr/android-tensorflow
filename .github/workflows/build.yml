@@ -3,8 +3,6 @@ name: Build APK
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -12,7 +10,7 @@ permissions:
 
 jobs:
   build:
-    name: Build APK
+    name: Build & Release APK
     runs-on: ubuntu-latest
 
     steps:
@@ -31,17 +29,21 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build debug APK
-        run: ./gradlew :app:assembleDebug
+      - name: Build release APK
+        run: ./gradlew :app:assembleRelease
+        env:
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: apk-debug
-          path: app/build/outputs/apk/debug/*.apk
+          name: apk-release
+          path: app/build/outputs/apk/release/*.apk
 
-      - name: Upload APK to release (tag push only)
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: app/build/outputs/apk/debug/*.apk
+          tag_name: v${{ github.run_number }}
+          name: Release v${{ github.run_number }}
+          generate_release_notes: true
+          files: app/build/outputs/apk/release/*.apk

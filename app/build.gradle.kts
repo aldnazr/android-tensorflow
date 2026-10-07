@@ -1,7 +1,16 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("com.google.devtools.ksp")
 }
+
+// Fallback order: local.properties (dev machine), NEWS_API_KEY env var (CI), empty string.
+val localProperties = Properties()
+rootProject.file("local.properties").takeIf { it.exists() }?.inputStream()?.use { localProperties.load(it) }
+val newsApiKey = localProperties.getProperty("NEWS_API_KEY")
+    ?: System.getenv("NEWS_API_KEY")
+    ?: ""
 
 android {
     namespace = "com.dicoding.asclepius"
@@ -15,7 +24,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "NEWS_API_KEY", "\"7a167280fbb44ea08d3a736f7caf97c9\"")
+        buildConfigField("String", "NEWS_API_KEY", "\"$newsApiKey\"")
     }
 
     buildTypes {
